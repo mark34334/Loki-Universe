@@ -1,0 +1,7 @@
+So, we have a file upload point on a site. How would we go about exploiting it?
+
+As with any kind of hacking, enumeration is key. The more we understand about our environment, the more we're able to *do* with it. Looking at the source code for the page is good to see if any kind of client\-side filtering is being applied. Scanning with a directory bruteforcer such as Gobuster is usually helpful in web attacks, and may reveal where files are being uploaded to; Gobuster is no longer installed by default on Kali, but can be installed with `sudo apt install gobuster`. Intercepting upload requests with [Burpsuite](https://tryhackme.com/room/burpsuitebasics) will also come in handy. Browser extensions such as [Wappalyser](https://www.wappalyzer.com/download) can provide valuable information at a glance about the site you're targetting.
+
+With a basic understanding of how the website might be handling our input, we can then try to poke around and see what we can and can't upload. If the website is employing client\-side filtering then we can easily look at the code for the filter and look to bypass it (more on this later!). If the website has server\-side filtering in place then we may need to take a guess at what the filter is looking for, upload a file, then try something slightly different based on the error message if the upload fails. Uploading files designed to provoke errors can help with this. Tools like Burpsuite or OWASP Zap can be very helpful at this stage.
+
+We'll go into a lot more detail about bypassing filters in later tasks.
